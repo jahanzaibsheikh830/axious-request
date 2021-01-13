@@ -1,7 +1,7 @@
 function signup() {
     axios({
         method: 'post',
-        url: 'http://localhost:5000/signup',
+        url: 'https://mongodb-signup.herokuapp.com/signup',
         data: {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
@@ -20,7 +20,7 @@ function signup() {
 function login() {
     axios({
         method: 'post',
-        url: 'http://localhost:5000/login',
+        url: 'https://mongodb-signup.herokuapp.com/login',
         data: {
             email: document.getElementById('lemail').value,
             password: document.getElementById('lpassword').value,
@@ -38,7 +38,7 @@ function login() {
 function getProfile() {
 axios({
     method: 'get',
-    url: 'http://localhost:5000/profile',
+    url: 'https://mongodb-signup.herokuapp.com/profile',
     credentials: 'include',
 }).then((response) => {
     console.log(response);
