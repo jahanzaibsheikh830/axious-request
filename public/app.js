@@ -1,9 +1,7 @@
-// var url = "https://mongodb-signup.herokuapp.com"
-var url = "http://localhost:3000"
 function signup() {
     axios({
         method: 'post',
-        url: 'http://localhost:3000/signup',
+        url: 'http://localhost:5000/signup',
         data: {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
@@ -22,10 +20,10 @@ function signup() {
 function login() {
     axios({
         method: 'post',
-        url: 'http://localhost:3000/login',
+        url: 'http://localhost:5000/login',
         data: {
-            lemail: document.getElementById('lemail').value,
-            lpassword: document.getElementById('lpassword').value,
+            email: document.getElementById('lemail').value,
+            password: document.getElementById('lpassword').value,
         }, withCredentials: true
     }).then((response) => {
         console.log(response);
@@ -40,18 +38,29 @@ function login() {
 function getProfile() {
 axios({
     method: 'get',
-    url: 'http://localhost:3000/profile',
-    withCredentials: true
+    url: 'http://localhost:5000/profile',
+    credentials: 'include',
 }).then((response) => {
     console.log(response);
-    alert(response.data.message)
-    // location.href = "./profile.html"
+    document.getElementById('pName').innerHTML = response.data.profile.name
+    document.getElementById('pEmail').innerHTML = response.data.profile.email
+    document.getElementById('pPhone').innerHTML = response.data.profile.phone
+    document.getElementById('pGender').innerHTML = response.data.profile.gender
 }, (error) => {
     console.log(error.message);
+    location.href = "./login.html"
 });
 return false
 }
-// function logout(){
-//     localStorage.removeItem('userToken')
-//     href.location = "./login.html"
-// }
+function logout(){
+    axios({
+        method: 'post',
+        url: 'http://localhost:5000/logout',
+    }).then((response) => {
+        console.log(response);
+        location.href = "./login.html"
+    }, (error) => {
+        console.log(error);
+    });
+    return false
+}
