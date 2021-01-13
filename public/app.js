@@ -12,6 +12,7 @@ function signup() {
     }).then((response) => {
         console.log(response);
         alert(response.data.message)
+        location.href = "./login.html"
     }, (error) => {
         console.log(error);
     });
